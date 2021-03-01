@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+
+<robot name="robomax" xmlns:xacro="http://ros.org/wiki/xacro">
+
+	<xacro:property name="PI" value="3.1415926535897931" />
+	<xacro:include filename="$(find robomax_description)/description/macros.xacro" />
+	<xacro:include filename="$(find robomax_description)/description/robomax.gazebo" />
+	<link name="base_footprint" />
+
+	<wheel name="back_left" x="0.05675" y="0.0495" z="0.0" />
+	<wheel name="back_right" x="0.05675" y="-0.0675" z="0.0" />
+	<wheel name="front_left" x="-0.05675" y="0.0495" z="0.0" />
+	<wheel name="front_right" x="-0.05675" y="-0.0675" z="0.0" />
+
+
+	<link name="base_link">
+		<visual>
+			<origin rpy="0 0 ${PI/2}" xyz="0.0 0 -0.014" />
+			<material name="White">
+				<color rgba="${100/255} ${100/255} ${100/255} 1.0" />
+			</material>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/robomax_body.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/robomax_body.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<origin rpy="0 0 ${PI/2}" xyz="0.0 0 -0.014" />
+			<material name="White">
+				<color rgba="${30/255} ${30/255} ${30/255} 1.0" />
+			</material>
+		</collision>
+		<inertial>
+			<mass value="0.5" />
+			<box_inertia m="0.5" x="0.128" y="0.95" z="0.028" />
+		</inertial>
+	</link>
+
+	<link name="top_lid_link">
+		<visual>
+			<origin rpy="0 0 ${PI/2}" xyz="0.0 0 0.014" />
+			<material name="White">
+				<color rgba="${100/255} ${100/255} ${100/255} 1.0" />
+			</material>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/robomax_lid.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/robomax_lid.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<origin rpy="0 0 ${PI/2}" xyz="0.0 0 0.014" />
+			<material name="White">
+				<color rgba="${30/255} ${30/255} ${30/255} 1.0" />
+			</material>
+		</collision>
+		<inertial>
+			<mass value="0.5" />
+			<box_inertia m="0.5" x="0.128" y="0.95" z="0.15" />
+		</inertial>
+	</link>
+
+	<link name="epm_link">
+		<visual>
+			<origin rpy="0 ${PI/2} 0" xyz="-0.082 0.0 0.0082" />
+			<material name="White">
+				<color rgba="${100/255} ${100/255} ${100/255} 1.0" />
+			</material>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/epm.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</visual>
+		<collision>
+			<geometry>
+				<mesh filename="package://robomax_description/description/meshes/epm.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<origin rpy="0 ${PI/2} 0" xyz="-0.082 0.0 0.0082" />
+			<material name="White">
+				<color rgba="${30/255} ${30/255} ${30/255} 1.0" />
+			</material>
+		</collision>
+		<inertial>
+			<mass value="0.05" />
+			<box_inertia m="0.05" x="0.05" y="0.05" z="0.02" />
+		</inertial>
+	</link>
+
+	<link name="base_ir_front" />
+	<link name="camera_link" />
+
+	<link name="marker">
+		<inertial>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<mass value="0.001" />
+			<box_inertia m="0.01" x="0.08" y="0.08" z="0.0005" />
+		</inertial>
+
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.08 0.08 0.0005" />
+			</geometry>
+		</visual>
+
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<box size="0.08 0.08 0.0005" />
+			</geometry>
+		</collision>
+	</link>
+
+
+	<joint name="marker_link_joint" type="fixed">
+		<origin xyz="0 0 0.031" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="marker" />
+	</joint>
+
+
+	<joint name="epm_joint_base_link" type="fixed">
+		<origin xyz="0 0.0 0" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="epm_link" />
+	</joint>
+
+	<joint name="top_lid_joint_base_link" type="fixed">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="top_lid_link" />
+	</joint>
+
+	<joint name="base_footprint_base_link_joint" type="fixed">
+		<origin xyz="0 0 0.00" rpy="0 0 0" />
+		<parent link="base_footprint" />
+		<child link="base_link" />
+	</joint>
+
+	<joint name="ir_front_joint" type="fixed">
+		<origin rpy="0 0 0" xyz="0.09 0 0" />
+		<parent link="base_link" />
+		<child link="base_ir_front" />
+	</joint>
+
+	<joint name="camera_joint" type="fixed">
+		<origin rpy="0 0 0" xyz="0.09 0 0" />
+		<parent link="base_link" />
+		<child link="camera_link" />
+	</joint>
+
+</robot>

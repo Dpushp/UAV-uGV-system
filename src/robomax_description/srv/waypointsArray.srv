@@ -1,0 +1,4 @@
+geometry_msgs/PoseStamped goal
+std_msgs/String maneuver
+---
+std_msgs/Bool response

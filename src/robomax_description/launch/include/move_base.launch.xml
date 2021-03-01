@@ -1,0 +1,25 @@
+<launch>
+  <arg name="model_name" value="robomax"/>
+
+  <!-- Define your move_base node -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <remap from="cmd_vel" to="move_base/cmd_vel"/>
+    <rosparam file="$(find robomax_description)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find robomax_description)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find robomax_description)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find robomax_description)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find robomax_description)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find robomax_description)/param/base_local_planner_params.yaml" command="load"/>
+    <param name="local_costmap/robot_base_frame" value="/robomax"/>
+    <param name="global_costmap/robot_base_frame" value="robomax"/>
+    <param name="global_costmap/global_frame" value="/odom"/>
+     <param name="local_costmap/global_frame" value="/odom"/>
+
+    
+    <!-- <param name="local_costmap/scan/topic" value="laser/scan_front"/>
+    <param name="global_costmap/scan/topic" value="laser/scan_front"/> -->
+    <!-- <remap from="odom" to="$(arg model_name)/odom"/> -->
+    <!-- <remap from="map" to="/map"/> -->
+    
+  </node>
+</launch>
