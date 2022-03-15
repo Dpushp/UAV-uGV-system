@@ -1,3 +1,46 @@
+# UAV-uGV-system
+![coverimage](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/agv.png)
+
+**Aim**: To design and evalute a cooperative planning strategy for payload transportation using a heterogeneous swarm of robots.
+
+**Challenges:**
+- Design a UAV-UGV system physically coupled using a passive tether; % to explore unknown regions hidden from the field of view of the UAV like cavities and regions where UGV alone cannot reach;
+- Design a miniature robot with autonomous navigation capabilities;
+- Design and implement exploration and manipulation techniques for the miniature robot, as it might not be able to use existing algorithms because of the lack of (high-end) sensors and computations required;
+- Design a miniature robot with autonomous navigation, exploration and manipulation capabilities, even though the miniature robot is equipped only with limited low-end sensors and computation board;
+- Design a gripper that can be installed on a mini robot to pick and place objects in a hidden space;
+- Design a robust software-system architecture to support repetitive operations.
+
+## System Dependencies
+- Ubuntu : 16.04+
+- ROS : Kinetic+
+- CPU : ARM7+ or Intel i3+ or AMD R4+
+- RAM : 4GB+
+- Memory : 10GB+
+
+## Setup and installation
+```bash
+cd ~/
+git clone https://github.com/scifiswapnil/UAV-uGV-system
+cd UAV-uGV-system/ROS
+source /opt/ros/melodic/setup.bash
+catkin_make
+source devel/setup.bash
+roslaunch robomax_description robomax_world.launch 
+```
+
+## Todo
+- [x] Tether control mechanism 
+- [x] uGV exploration strategy 
+- [x] Rope simulation 
+- [x] global planning strategies 
+- [x] Path planning tests
+- [x] uGV prototyping
+- [x] uGV PCB design and prototyping 
+- [ ] Benchmarking **to be disscussed**
+
+## Existing uGV platform comparison
+
 | **Sr. No.** 	|  	| **1** 	| **2** 	| **3** 	| **4** 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|
 | **Robot name** 	|  	| Pololu Zumo  	| Nvidia Jetbot Ai 	| Turtlebot Burger 	| Robomax 	|
