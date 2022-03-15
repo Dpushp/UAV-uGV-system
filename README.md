@@ -51,7 +51,7 @@ roslaunch robomax_description robomax_world.launch
 
 | **Sr. No.** 	|  	| **1** 	| **2** 	| **3** 	| **4** 	|
 |:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|
-| **Robot name** 	|  	| Pololu Zumo  	| Nvidia Jetbot Ai 	| Turtlebot Burger 	| Robomax 	|
+| **Robot name** 	|  	| Pololu Zumo  	| Nvidia Jetbot Ai 	| Turtlebot Burger 	| Robomax(Ours) 	|
 | **Structural** 	| Weight 	| 160 grams 	|  	| 900 grams 	| 350 grams 	|
 |  	| Size 	| 100x100x45 mm 	|  	| 138 x 178 x 192 mm 	| 130 x 120 x 55 mm 	|
 |  	| Drive type 	| Differential with <br>track drive 	|  	| 2 Differential drive<br> + 2 castors 	| 4 wheel drive 	|
