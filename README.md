@@ -29,15 +29,6 @@ source devel/setup.bash
 roslaunch robomax_description robomax_world.launch 
 ```
 
-## Todo
-- [x] Tether control mechanism 
-- [x] uGV exploration strategy 
-- [x] Rope simulation 
-- [x] global planning strategies 
-- [x] Path planning tests
-- [x] uGV prototyping
-- [x] uGV PCB design and prototyping 
-- [ ] Benchmarking **to be disscussed**
 
 ## Bill of materials
 
