@@ -1,5 +1,5 @@
 # UAV-uGV-system
-![coverimage](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/agv.png)
+![coverimage](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/images/first-prototype.jpeg)
 
 **Aim**: To design and evalute a cooperative planning strategy for payload transportation using a heterogeneous swarm of robots.
 
@@ -39,6 +39,23 @@ roslaunch robomax_description robomax_world.launch
 - [x] uGV PCB design and prototyping 
 - [ ] Benchmarking **to be disscussed**
 
+## Bill of materials
+
+| **Sr No** 	| **Part Name** 	| **Link** 	| **Spec** 	| **Cost** 	| **Quantity** 	| **Total**<br>(in INR) 	|
+|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|:---:	|
+| **1** 	| Microgear Motor 	| [source](https://www.mgsuperlabs.co.in/estore/210-1-Micro-Metal-Gearmotor-LP-6V-with-Extended-Motor-Shaft?tag=LP) 	| 210:1 gear ratio<br>60 RPM<br>1.9 kg-cm<br>Extended shaft 	| 1679 	| 5 	| 8395 	|
+| **2** 	| Microgear Motor Encoder 	| [source](https://www.mgsuperlabs.co.in/estore/Sensors/Encoders/Magnetic-Encoder-Pair-Kit-for-Micro-Metal-Gearmotors-12-CPR-2-7-18V) 	| 12 CPR<br>LP & HP compatible 	| 999 	| 5 	| 4995 	|
+| **3** 	| Microgear Wheels 	| [source](https://www.mgsuperlabs.co.in/estore/Robotics/Wheels/Pololu-Wheel-42x19mm-Pair) 	| 42mm x 19mm Wheel Rugged<br>encoder Built in 	| 700 	| 5 	| 3500 	|
+| **4** 	| Rpi waveshare mini cam 	| [source](https://www.mgsuperlabs.co.in/estore/Raspberry-Zero-V1.3-mini-Camera) 	| Rpi zero 5 MP mini camera 	| 1979 	| 1 	| 1979 	|
+| **5** 	| 9DOF IMU sensor 	| [source](https://www.mgsuperlabs.co.in/estore/Sensors/Motion-Position-Sensors/Grove-IMU-9-DOF?sort=p.price&order=DESC) 	| I2C interface <br>400kHz Fast Mode I2C 	| 1479 	| 1 	| 1479 	|
+| **6** 	| Motor Driver 	| [source](https://www.mgsuperlabs.co.in/estore/Robotics/Motor-Drivers/DRV8833-Dual-Motor-Driver-Carrier) 	| Dual HBridge driver<br>1.2A per channel 	| 489 	| 2 	| 978 	|
+| **7** 	| Li-ion BMS 	| [source](https://robu.in/product/3s-12v-18650-lithium-battery-protection-board-12v-10a-overcharge-overcurrent-protection/?gclid=Cj0KCQiAsdHhBRCwARIsAAhRhsm5FwV4sGKYPKlrcEu-bcQJZBrBzpFeIFE3jpBhRJywKtu3QIwOPJsaAoluEALw_wcB) 	| 3S Li-Ion charge/Discharge <br>11.1 - 12.6 CutOff 	| 200 	| 2 	| 400 	|
+| **8** 	| Li-ion battery 	| [source](https://www.amazon.in/UltraFire-Battery-Li-ion-Rechargeable-Charger/dp/B07BK1KRC1) 	| 2 pcs 18650<br>charger included 	| 3529 	| 2 	| 7058 	|
+| **9** 	| ESP 32 + camera 	| [source](https://www.banggood.in/TTGO-T-Journal-ESP32-Camera-Development-Board-OV2640-SMA-WiFi-3dbi-Antenna-0_91-OLED-Camera-Board-p-1379925.html?cur_warehouse=CN) 	| ESP32<br>0.9 MP Camera  	| 1060 	| 1 	| 1060 	|
+| **10** 	| Rpi zero camera kit 	| [source](https://www.mgsuperlabs.co.in/estore/Raspberry-Pi-Zero-v1.3-Camera-Pack-Includes-Pi-Zero) 	| RPi zero<br>case<br>convertors 	| 2490 	| 1 	| 2490 	|
+|  	|  	|  	|  	|  	| **Total** 	| 32334 	|
+
+
 ## Existing uGV platform comparison
 
 | **Sr. No.** 	|  	| **1** 	| **2** 	| **3** 	| **4** 	|
@@ -57,3 +74,8 @@ roslaunch robomax_description robomax_world.launch
 | **Battery type** 	|  	| 4x AA Alkaline<br> battery  	| Li-ion/Li-Po/Portable <br>power Bank 	| Lipo Battery 	| 2x 18650 Li-ion <br>battery 	|
 | **Operation time** 	|  	| 45 mins  	| 65-90 mins  	| 85-110 mins 	| 30 mins 	|
 | **Programmable** 	|  	| Arduino platform 	| Debian platfrom / ROS 	| Debian platform / <br>Arduino / ROS 	| Debian platform / <br>ESP-IDF / ROS 	|
+
+
+PCB prototype             |  UGV CAD Model | First prototype
+:-------------------------:|:-------------------------:|:-------------------------:
+![](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/images/PCB.jpeg)  |  ![](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/images/agv.png) |  ![](https://github.com/scifiswapnil/UAV-uGV-system/blob/main/images/miniUGV.jpg)
