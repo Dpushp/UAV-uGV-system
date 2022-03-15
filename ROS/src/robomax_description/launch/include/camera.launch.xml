@@ -1,0 +1,23 @@
+<launch>
+  
+  <arg name="initial_pose_x" default="0.0"/>
+  <arg name="initial_pose_y" default="0.0"/>
+  <arg name="initial_pose_yaw" default="0.0"/>
+  <arg name="model_name" value="camera"/>
+  <arg name="init_pose" value="-x $(arg initial_pose_x) -y $(arg initial_pose_y) -z 0.0" />
+
+  <param name="camera_description" command="$(find xacro)/xacro --inorder '$(find robomax_description)/description/camera.xacro'" />
+  <node name="camera_urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen" args="-urdf -model $(arg model_name) -param camera_description"/>
+
+  <!-- send fake joint values -->
+  <node name="camera_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="use_gui" value="False"/>
+  </node>
+
+  <!-- Combine joint values -->
+  <node name="camera_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+  	<param name="publish_frequency" type="double" value="30.0" />
+    <remap from="$(arg model_name)/robot_description" to="/camera_description" />
+  </node>
+
+</launch>

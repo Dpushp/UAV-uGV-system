@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+     <xacro:macro name="cylinder_inertia" params="m r h">
+        <inertia  ixx="${m*(3*r*r+h*h)/12}" ixy = "0" ixz = "0"
+                  iyy="${m*(3*r*r+h*h)/12}" iyz = "0"
+                  izz="${m*r*r/2}" /> 
+      </xacro:macro>
+
+      <xacro:macro name="box_inertia" params="m x y z">
+        <inertia  ixx="${m*(y*y+z*z)/12}" ixy = "0" ixz = "0"
+                  iyy="${m*(x*x+z*z)/12}" iyz = "0"
+                  izz="${m*(x*x+z*z)/12}" /> 
+      </xacro:macro>
+
+      <xacro:macro name="sphere_inertia" params="m r">
+        <inertia  ixx="${2*m*r*r/5}" ixy = "0" ixz = "0"
+                  iyy="${2*m*r*r/5}" iyz = "0"
+                  izz="${2*m*r*r/5}" /> 
+      </xacro:macro>
+
+      <xacro:macro name="wheel" params="name x y z">
+        <link name="${name}_wheel">
+          <visual>
+            <origin rpy="0 ${PI/2} 0" xyz="0.0 0.0 0.0"/>
+                <material name="White">
+                  <color rgba="${100/255} ${100/255} ${100/255} 1.0"/>
+                </material>
+            <geometry>
+              <mesh filename="package://robomax_description/description/meshes/wheels.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+          </visual>
+        <collision>
+            <geometry>
+              <mesh filename="package://robomax_description/description/meshes/wheels.stl" scale="0.001 0.001 0.001"/>
+            </geometry>
+            <origin rpy="0 ${PI/2} 0" xyz="0.0 0.0 0.0"/>
+            <material name="White">
+                  <color rgba="${30/255} ${30/255} ${30/255} 1.0"/>
+              </material>
+        </collision>    
+          <inertial>
+              <mass value="0.2"/>
+              <box_inertia m="0.2" x="0.05" y="0.03" z="0.05"/>
+          </inertial>
+      </link>
+
+
+        <joint name="${name}_wheel_joint" type="continuous">
+          <parent link="base_link"/>
+          <child link="${name}_wheel"/>
+          <origin xyz="${x} ${y} ${z}" rpy="0 0 ${PI/2}" /> 
+          <limit effort="1000" velocity="0.2"/>
+          <joint_properties damping="0.25" friction="1.0"/>
+        </joint>
+
+        <!-- <transmission name="${name}_joint_trans" type="SimpleTransmission">
+          <actuator name="${name}_joint_motor"/>
+          <joint name="${name}_wheel_joint"/>
+          <mechanicalReduction>1</mechanicalReduction>
+          <motorTorqueConstant>1</motorTorqueConstant>
+        </transmission> -->
+
+      </xacro:macro>
+
+<!-- 
+     <xacro:macro name="wheel" params="name wheelWidth">
+
+       <link name="${name}_wheel">
+        <collision>
+          <origin xyz="0 0 0" rpy="0 ${PI/2} ${PI/2}" />
+          <geometry>
+           <cylinder length="0.07" radius="${wheelRadius}"/>
+          </geometry>
+        </collision>
+
+        <visual>
+          <origin xyz="0 0 0" rpy="0 ${PI/2} ${PI/2}" />
+          <geometry>
+           <cylinder length="0.07" radius="${wheelRadius}"/>
+          </geometry>
+          <material name="black"/>
+        </visual>
+
+        <inertial>
+          <origin xyz="0 0 0" rpy="0 ${PI/2} ${PI/2}" />
+          <mass value="${wheelMass}"/>
+          <cylinder_inertia m="${wheelMass}" r="${wheelRadius}" h="${wheelWidth}"/>
+        </inertial>
+       </link>
+
+       <joint name="${name}_wheel_joint" type="continuous">
+          <parent link="base_link"/>
+          <child link="${name}_wheel"/>
+          <origin xyz="0 ${wheelWidth/2} -0.005" rpy="0 0 0" /> 
+          <axis xyz="0 1 0" rpy="0 0 0" />
+          <limit effort="100" velocity="100"/>
+          <joint_properties damping="0.5" friction="0.5"/>
+        </joint>
+
+        <transmission name="${name}_joint_trans" type="SimpleTransmission">
+          <actuator name="${name}_joint_motor"/>
+          <joint name="${name}_wheel_joint"/>
+          <mechanicalReduction>1</mechanicalReduction>
+          <motorTorqueConstant>1</motorTorqueConstant>
+        </transmission>
+
+     </xacro:macro> -->
+
+<!-- 
+
+     <xacro:macro name="castor" params="name x y sphereR">
+      <link name="${name}_castor" >
+        <visual name="${name}_castor">
+            <origin xyz="0 0 0" rpy=" 0 0 0"/>
+            <geometry>
+              <sphere radius="${sphereR}"/>
+            </geometry>
+        </visual>
+        <collision name="${name}_castor">
+          <origin xyz="0 0 0" rpy=" 0 0 0"/>
+          <geometry>
+            <sphere radius="${sphereR}"/>
+          </geometry>
+          <surface>
+            <friction>
+                <ode>
+                    <mu>0.01</mu>
+                    <mu2>0.01</mu2>
+                    <slip1>1.0</slip1>
+                    <slip2>1.0</slip2>
+                </ode>
+              </friction>
+          </surface>
+      </collision>
+	<sphere_inertia m="0.5" r="${sphereR}"/>
+      </link>
+       <joint name="${name}_castor_joint" type="fixed">
+          <parent link="base_footprint"/>
+          <child link="${name}_castor"/>
+          <origin xyz="${x} ${y} ${sphereR-0.003}" rpy="0 0 0" /> 
+        </joint>
+
+        <gazebo reference="${name}_castor">
+        <material>Gazebo/Black</material>
+       </gazebo>
+ -->
+     <!-- </xacro:macro> -->
+
+
+</robot>
